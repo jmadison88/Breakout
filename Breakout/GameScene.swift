@@ -172,10 +172,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if contact.bodyA.node == brick || contact.bodyB.node == brick {
                 score += 1
                 updateLabels()
-                brick.removeFromParent()
-                removedBricks += 1
-                if removedBricks == bricks.count {
-                    gameOver(winner: true)
+                if brick.color == .blue {
+                    brick.color = .orange
+                }
+                else if brick.color == .orange {
+                    brick.color == .green
+                }
+                else {
+                    brick.removeFromParent()
+                    removedBricks += 1
+                    if removedBricks == bricks.count {
+                        gameOver(winner: true)
+                    }
                 }
             }
             if contact.bodyA.node?.name == "loseZone" || contact.bodyB.node?.name == "loseZone" {
